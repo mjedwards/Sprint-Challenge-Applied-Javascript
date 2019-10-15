@@ -31,6 +31,14 @@ let newsHeadline;
   .then(function (response) {
     // handle success
 
+    
+    for (let key in response.data.articles) {
+      let currentArr = response.data.articles[key];
+      for (let i = 0; i < currentArr.length; i++) {
+        createCard(currentArr[i]);
+      }
+    }
+
     console.log(response);
     createCard(response);
   })
@@ -43,21 +51,6 @@ let newsHeadline;
   });
 
 function createCard (x) {
-    let newsArticles= [];
-    let newsBootstrap = Object.values(x.data.articles.bootstrap[i]);
-    let newsJavaScript= Object.values(x.data.articles.javascript[i]);
-    let newsJquery = Object.values(x.data.articles.jquery[i]);
-    let newsNode = Object.values(x.data.articles.node[i]);
-    let newsTech = Object.values(x.data.articles.technology[i]);
-
-    for(let i = 0; i < 5; i++) {
-        newsBootstrap;
-        newsJavaScript;
-        newsJquery;
-        newsNode;
-        newsTech; 
-    }
-     
    
 
   let card = document.createElement("div");
@@ -65,8 +58,7 @@ function createCard (x) {
 
     let headLine = document.createElement("div");
     headLine.classList.add("headline");
-    headLine.textContent = `${newsHeadline}`;
-
+    headLine.textContent = `${x.headline}`;
     
     let author = document.createElement("div");
     author.classList.add("author");
@@ -75,10 +67,10 @@ function createCard (x) {
     imgContainer.classList.add("img-container");
 
   let image = document.createElement("img");
-    image.setAttribute("src",  `${authorPhoto}`);
+    image.setAttribute("src",  `${x.authorPhoto}`);
 
   let spaN = document.createElement("span");
-    spaN.textContent = `By ${authorName}`;
+    spaN.textContent = `By ${x.authorName}`;
     
 
 // card assembly
