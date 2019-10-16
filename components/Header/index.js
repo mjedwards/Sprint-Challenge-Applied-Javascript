@@ -9,4 +9,34 @@
 //  </div >
 // And add it to the DOM in the .header-container component
 
-function Header() {}
+let headerContainer = document.querySelector(".header-container");
+let date = new  Date();
+let currentDate = date.getMonth()+'/'+ date.getDay()+'/'+ date.getFullYear();
+
+function Header() {
+    let header = document.createElement("div");
+        header.classList.add("header");
+
+    let spanDate = document.createElement("span");
+        spanDate.classList.add("date");
+        spanDate.textContent = `${currentDate}`;
+
+    let hOne = document.createElement("h1");
+        hOne.textContent = "Lambda Times";
+
+    let spanTemp = document.createElement("span");
+        spanTemp.classList.add("temp");
+        spanTemp.textContent = "98°";
+
+    header.appendChild(spanDate);
+    header.appendChild(hOne);
+    header.appendChild(spanTemp);
+    
+
+    headerContainer.appendChild(header);
+
+    return headerContainer;
+}
+
+
+Header();
